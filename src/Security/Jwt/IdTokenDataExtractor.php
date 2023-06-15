@@ -16,6 +16,7 @@ final class IdTokenDataExtractor
 
     public function extract(string $idToken): IdTokenData
     {
+        // dd($this->publicKey);
         $decoded = JWT::decode($idToken, new Key($this->publicKey, $this->algo));
 
         $iat = $decoded->iat ?? PHP_INT_MAX;

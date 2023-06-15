@@ -2,8 +2,9 @@
 
 namespace App\Security;
 
-use App\Security\Jwt\IdTokenDataExtractor;
 use LogicException;
+use App\Entity\User;
+use App\Security\Jwt\IdTokenDataExtractor;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -30,7 +31,7 @@ final class OpenIdUserProvider implements UserProviderInterface
         throw new \BadMethodCallException(sprintf('%s is depracated and should not be called', __METHOD__));
     }
 
-    public function loadUserByIdentifier(string $idToken): UserInterface
+    public function loadUserByIdentifier(string $idToken)
     {
         $idTokenData = $this->idTokenDataExtractor->extract($idToken);
 
